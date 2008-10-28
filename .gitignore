@@ -1,0 +1,9 @@
+*.pyc
+tags
+TAGS
+*.swp
+*.egg-info
+.emacs.desktop
+.#*
+build
+dist

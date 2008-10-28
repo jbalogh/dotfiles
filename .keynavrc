@@ -1,0 +1,58 @@
+# This is a keynavrc file. Yours should live in 
+# $HOME/.keynavrc
+#
+# Lines beginning with '#' are comments.
+# Format is:
+#   keysequence cmd1,cmd2,cmd3...
+# 
+# The 'start' command alone is handled specially, in that any key sequence
+# mapped to 'start' will be grabbed when keynav starts up so you can invoke it
+# to activate keynav. The remaining keys are only recognized while keynav is
+# active
+#
+# Project page; http://www.semicomplete.com/projects/keynav
+
+ctrl+semicolon start
+Escape end
+h cut-left
+j cut-down
+k cut-up
+l cut-right
+u cut-left,cut-up
+o cut-right,cut-up
+n cut-left,cut-down
+m cut-right,cut-down
+shift+h move-left
+shift+j move-down
+shift+k move-up
+shift+l move-right
+shift+y move-left,move-up
+shift+u move-right,move-up
+shift+b move-left,move-down
+shift+n move-right,move-down
+space warp,click 1,end
+shift+space warp,click 2,end
+semicolon warp,end
+1 click 1
+2 click 2
+3 click 3
+
+# In case you're still holding control after the start
+ctrl+h cut-left
+ctrl+j cut-down
+ctrl+k cut-up
+ctrl+l cut-right
+ctrl+u cut-left,cut-up
+ctrl+o cut-right,cut-up
+ctrl+n cut-left,cut-down
+ctrl+m cut-right,cut-down
+
+# Example of cut and move without the default values
+#h cut-left .75
+#j cut-down .75
+#k cut-up .75
+#l cut-right .75
+#shift+h move-left .50
+#shift+j move-down .50
+#shift+k move-up .50
+#shift+l move-right .50

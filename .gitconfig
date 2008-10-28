@@ -1,0 +1,14 @@
+[user]
+	name = Jeff Balogh
+	email = me@jeffbalogh.org
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[core]
+    excludesfile = /home/jeff/.gitignore
+[alias]
+    ci = commit
+    co = checkout
+[merge]
+	tool = meld

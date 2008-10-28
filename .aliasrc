@@ -1,0 +1,79 @@
+du='du -sh'
+diff='diff -u'
+grep='grep --color=auto'
+rgrep='grep -r --color=auto'
+mk='mkdir -p'
+p=popd
+open=gnome-open
+o=open
+rrm='rm -rf'
+
+d=django
+
+# ls
+ls="ls --color=auto -I '*.pyc'"
+l='ls -lh'
+l='ls -lh'
+ll='ls -lh'
+la='ls -A'
+lla='la -lhA'
+
+# Misc
+backup="rsync -av --delete -h --progress --exclude '/movies/**' --exclude '.VirtualBox/**' ~/ /mnt/backup/home"
+sp='sc sup'
+rss='sc newsbeuter'
+irc='sc irssi'
+
+# DrProject
+dp-admin='drproject-admin ~dpenv'
+dps='drproject-server -w standalone --debug --auto-reload ~dpenv'
+
+# Darcs
+dw='darcs whatsnew'
+dr='darcs record'
+
+# Arch
+pac=pacman
+y=yaourt
+ins='y -S'
+rem='y -Rs'
+net='sudo netcfg2 -a; sudo netcfg2'
+x=startx
+
+# git
+g=git
+gd='git diff'
+gs='git --no-pager status'
+gco='git checkout'
+gic='git commit'
+gci=gic
+gl='git log'
+glp='git log -p'
+gv='git svn'
+gr='git rebase'
+ungit="perl -pi -e 's:[ab]/(.*):\1:g'"
+
+# nose
+nose=nosetests
+n=nose
+nh='nose -h M'
+
+# Python
+py=python
+ip=ipython
+ipo=ipython
+
+# emacs
+en='emacsclient -t -s emacs-nw -a emacs-nw'
+
+# vim
+v=vim
+c=v
+b=v
+
+# ssh targets
+ucf='ssh je591549@olympus.acs.ucf.edu'
+monroe='ssh jbalogh@monroe.cs.ucf.edu'
+bp='ssh jeff@basieproject.org'
+
+# vim: ft=sh

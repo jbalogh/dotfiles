@@ -1,0 +1,184 @@
+Emacs*font: Bitstream Vera Sans Mono-10
+Emacs.FontBackend: xft
+
+Xcursor.theme: polar
+Xcursor.size:  22
+
+Xft*dpi:               96
+Xft*antialias:          false
+Xft*hinting:            0
+!Xft.autohint:    1
+!Xft*rgba:        rgba
+
+
+! rxvt*depth:       24
+!urxvt*inheritPixmap: true
+! rxvt*scrollstyle: plain
+! rxvt*mouseWheelScrollPage: false
+! rxvt*saveLines: 2767
+! rxvt*urlLauncher:      dchroot -d "opera -notrayicon"
+! rxvt*cursorBlink: true
+!urxvt*geometry: 90x22
+!urxvt*shading: 30
+! rxvt*fading: 10
+! rxvt*font:             xft:DejaVu Sans Mono-10
+!urxvt*inputMethod: scim
+!urxvt*transparent: false
+!urxvt*tintColor: #000000
+! rxvt*borderLess: true
+!urxvt*externalBorder:0
+!urxvt*internalBorder:8
+!urxvt*borderColor:0
+!urxvt.skipBuiltinGlyphs:true
+! rxvt.intensityStyles:    true
+
+! urxvt*color0:  #000000
+! urxvt*color8:  #5E5E5E
+!
+! urxvt*color1:  #C20202
+! urxvt*color9:  #C71E1E
+!
+! urxvt*color2:  #2FC22A
+! urxvt*color10: #32CF2D
+!
+! urxvt*color3:  #CBC94C
+! urxvt*color11: #D5DE52
+!
+! urxvt*color4:  #6393CB
+! urxvt*color12: #6A9FDB
+!
+! urxvt*color5:  #E1B4E8
+! !urxvt*color13: #E9BAF0
+! urxvt*color13: #ff55ff
+!
+! urxvt*color6:  #5BC9CD
+! urxvt*color14: #5ED0D4
+!
+! !urxvt*color7:  #c4c4c4
+! urxvt*color7:  #eeeeee
+! !urxvt*color15: #cdcdcd
+! urxvt*color15: #ffffff
+!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+urxvt*termName:           rxvt
+! urxvt*geometry:           geometry
+! urxvt*chdir:              string
+! urxvt*reverseVideo:       boolean
+! urxvt*loginShell:         boolean
+! urxvt*jumpScroll:         boolean
+! urxvt*skipScroll:         boolean
+! urxvt*pastableTabs:       boolean
+! urxvt*scrollstyle:        mode
+urxvt*scrollBar:          false
+! urxvt*scrollBar_right:    boolean
+! urxvt*scrollBar_floating: boolean
+! urxvt*scrollBar_align:    mode
+! urxvt*thickness:          number
+! urxvt*scrollTtyOutput:    boolean
+! urxvt*scrollTtyKeypress:  boolean
+! urxvt*scrollWithBuffer:   boolean
+! urxvt*inheritPixmap:      boolean
+urxvt*transparent:        false
+! urxvt*tintColor:          #fff
+urxvt*shading:            30
+urxvt*fading:             10
+! urxvt*fadeColor:          color
+! urxvt*utmpInhibit:        boolean
+! urxvt*urgentOnBell:       boolean
+! urxvt*visualBell:         boolean
+! urxvt*mapAlert:           boolean
+! urxvt*meta8:              boolean
+! urxvt*mouseWheelScrollPage:   boolean
+
+! urxvt*insecure:           boolean
+! urxvt*cursorUnderline:    boolean
+! urxvt*cursorBlink:        boolean
+! urxvt*pointerBlank:       boolean
+urxvt*background:         #171717
+urxvt*foreground:         #fff
+
+! Black
+! urxvt*color0:             color
+! urxvt*color8:             color
+! Red
+! urxvt*color1:             color
+! urxvt*color9:             color
+! Green
+! urxvt*color2:             color
+! urxvt*color10:            color
+! Yellow
+! urxvt*color3:             color
+! urxvt*color11:            color
+! Blue
+urxvt*color4:             #2276df
+urxvt*color12:            #15b7e9
+! Maroon
+! urxvt*color5:             color
+urxvt*color13:            #f403ce
+! Cyan
+urxvt*color6:             #47d0cb
+urxvt*color14:            #0df4eb
+! White
+urxvt*color7:             #fff
+urxvt*color15:            #fff
+
+! urxvt*colorBD:            color
+! urxvt*colorIT:            color
+! urxvt*colorUL:            color
+! urxvt*colorRV:            color
+! urxvt*underlineColor:     color
+! urxvt*scrollColor:        color
+! urxvt*troughColor:        color
+! urxvt*highlightColor:     color
+! urxvt*cursorColor:        color
+! urxvt*cursorColor2:       color
+! urxvt*pointerColor:       color
+! urxvt*pointerColor2:      color
+! urxvt*borderColor:        color
+urxvt*font:               xft:Bitstream Vera Sans Mono-9:pixelsize=12
+! urxvt*boldFont:           fontname
+! urxvt*italicFont:         fontname
+! urxvt*boldItalicFont:     fontname
+! urxvt*intensityStyles:    boolean
+! urxvt*inputMethod:        name
+! urxvt*preeditType:        style
+! urxvt*imLocale:           string
+! urxvt*imFont:             fontname
+! urxvt*title:              string
+! urxvt*iconName:           string
+! urxvt*saveLines:          number
+urxvt*depth:              24
+! urxvt*buffered:           boolean
+! urxvt*transient-for:      windowid
+! urxvt*override-redirect:  boolean
+! urxvt*hold:               boolean
+! urxvt*externalBorder:     number
+! urxvt*internalBorder:     number
+urxvt*borderLess:         true
+! urxvt*lineSpace:          number
+! urxvt*skipBuiltinGlyphs:  boolean
+! urxvt*pointerBlankDelay:  number
+! urxvt*backspacekey:       string
+! urxvt*deletekey:          string
+! urxvt*print-pipe:         string
+! urxvt*modifier:           modifier
+! urxvt*cutchars:           string
+! urxvt*answerbackString:   string
+! urxvt*secondaryScreen:    boolean
+! urxvt*secondaryScroll:    boolean
+! urxvt*perl-lib:           string
+! urxvt*perl-eval:          perl-eval
+! urxvt*perl-ext-common:    string
+! urxvt*iso14755_52:        boolean
+! urxvt*keysym.sym:         keysym
+
+
+
+! mark-yank-urls
+urxvt*keysym.M-u: perl:mark-yank-urls:activate_mark_mode
+urxvt*underlineURLS: true
+urxvt*perl-lib: /home/jeff/.urxvt
+urxvt*perl-ext:           matcher, mark-yank-urls
+urxvt*urlLauncher:        firefox
+urxvt*matcher.button:     1

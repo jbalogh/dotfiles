@@ -1,0 +1,6 @@
+#!/bin/sh
+
+cd /tmp
+wget http://ack.googlecode.com/svn/tags/latest/ack-standalone
+mv ack-standalone ~/bin/ack
+chmod +x ~/bin/ack

@@ -1,0 +1,18 @@
+---
+:confirm_no_attachments: true
+:thread_by_subject: false
+:confirm_top_posting: true
+:edit_signature: false
+:discard_snippets_from_encrypted_messages: false
+:editor: vim -c "set ft=mail"
+:ask_for_cc: false
+:ask_for_bcc: false
+:accounts:
+  :default:
+    :sendmail: /usr/sbin/sendmail -oem -ti
+    :alternates: [its.jeff.balogh@gmail.com]
+    :name: Jeff Balogh
+    :signature: /home/jeff/.signature
+    :email: me@jeffbalogh.org
+:ask_for_subject: false
+:discard_snippets_from_encrypted_messages: true
