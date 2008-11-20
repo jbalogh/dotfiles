@@ -127,14 +127,14 @@ bindkey '\Cl'  forward-word
 bindkey '\Ch'  backward-word
 
 # cdable vars
-py=/usr/lib/python2.5/site-packages
+py=/usr/lib/python2.6/site-packages
 drp=~/src/dp
 dp=~drp/drproject
 dpenv=~drp/hacking/drp_root
 alias dp='cd ~dp'
-dj=~/src/django/django
-alias dj='cd ~dj'
 basie=~/src/basie
+dj=~basie/parts/django/django
+alias dj='cd ~dj'
 basie(){
     cd ~basie
     source bin/activate

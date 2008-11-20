@@ -4,7 +4,7 @@
 :confirm_top_posting: true
 :edit_signature: false
 :discard_snippets_from_encrypted_messages: false
-:editor: vim -c "set ft=mail"
+:editor: vim -c "set ft=mail" "+/\s*$" -c "nohl"
 :ask_for_cc: false
 :ask_for_bcc: false
 :accounts:
