@@ -28,8 +28,8 @@ if [[ -r ${HOME}/.profile ]]; then
 fi
 
 # Load git_ps1
-if [[ -r ${HOME}/.zsh/git ]]; then
-    . ${HOME}/.zsh/git
+if [[ -r ${HOME}/.zsh/git-ps1 ]]; then
+    . ${HOME}/.zsh/git-ps1
 fi
 
 # Enable color support of ls
@@ -43,9 +43,7 @@ case $TERM in
     (rxvt*|xterm*)
         precmd () {
             print -Pn "\e]0;%n@%m: %~\a"
-            if [[ $HOST == archie && $USER == jeff ]]; then
-                psvar[2]=$(__git_ps1)
-            fi
+            psvar[2]=$(__git_ps1)
         }
 	;;
 esac
