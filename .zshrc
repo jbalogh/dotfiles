@@ -12,13 +12,19 @@ export ACK_COLOR_MATCH=magenta
 export PYTHONPATH=~/.local/pypath
 
 # Add goodies to the PATH
-if [[ $HOST == archie ]] && [[ ! $PATH =~ ${HOME}/bin ]]; then
+echo $PATH | grep $HOME/bin
+if [[ $? -eq 1 ]]; then
     export PATH=${PATH}:${HOME}/bin:${HOME}/.local/bin
 fi
 
 # Load aliases
 if [[ -r ${HOME}/.aliasrc ]]; then
     eval `awk '/^[^# ]/ {print "alias " $0}' ${HOME}/.aliasrc`
+fi
+
+# Load profile
+if [[ -r ${HOME}/.profile ]]; then
+    source ${HOME}/.profile
 fi
 
 # Load git_ps1
@@ -48,7 +54,7 @@ esac
 RPS1=$'%{\e[34m%}%~%{\e[0m%}%{\e[35m%}%2v%{\e[0m%}'
 PS1=$'%{\e[36m%}%v %{\e[0m%}'
 case $HOST in
-    (boofar|archie)
+    (archie|jeff-baloghs-macbook.local)
         psvar='$';;
     (*)
         psvar="($HOST) %%";;
