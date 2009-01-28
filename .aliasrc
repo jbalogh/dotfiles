@@ -19,7 +19,7 @@ la='ls -A'
 lla='la -lhA'
 
 # Misc
-backup="rsync -av --delete -h --progress --exclude '/movies/**' --exclude '.VirtualBox/**' ~/ /mnt/backup/home"
+backup="rsync -av --delete -h --progress ~/ /mnt/backup/home"
 sp='sc sup'
 rss='sc newsbeuter'
 irc='sc irssi'

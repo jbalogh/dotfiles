@@ -5,7 +5,6 @@ set background=dark
 set backspace=indent,eol,start " Smart backspacing
 set expandtab
 set foldmethod=marker          " 3 curly braces
-set gfn=Courier\ New\ 12       " Gui font
 set hidden                     " Manage multiple buffers
 set history=1000               " Long history
 set ignorecase                 " Ignore case in search

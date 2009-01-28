@@ -103,6 +103,7 @@ setopt                  \
     chase_links         \
     NO_clobber          \
     correct             \
+    extended_glob       \
     hash_cmds           \
     hash_dirs           \
     hash_list_all       \
