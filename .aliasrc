@@ -43,7 +43,7 @@ x=startx
 # git
 g=git
 gd='git diff'
-gs='git --no-pager status'
+gs='git status'
 gco='git checkout'
 gic='git commit'
 gci=gic
