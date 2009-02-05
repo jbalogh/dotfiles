@@ -12,9 +12,9 @@ export ACK_COLOR_MATCH=magenta
 export PYTHONPATH=~/.local/pypath
 
 # Add goodies to the PATH
-echo $PATH | grep $HOME/bin
+echo $PATH | grep -q $HOME/bin
 if [[ $? -eq 1 ]]; then
-    export PATH=${PATH}:${HOME}/bin:${HOME}/.local/bin
+    export PATH=${HOME}/bin:${HOME}/.local/bin:$PATH
 fi
 
 # Load aliases
