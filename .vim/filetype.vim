@@ -5,5 +5,5 @@ if exists("did_load_filetypes")
     finish
 endif
 augroup filetypedetect
-    au! BufRead,BufNewFile *.hthtml setfiletype php
+    au! BufRead,BufNewFile *.thtml setfiletype php
 augroup END
