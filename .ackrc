@@ -1,1 +1,2 @@
 --type-add=js=json
+--type-add=php=thtml
