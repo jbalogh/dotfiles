@@ -20,9 +20,9 @@
 (require 'mic-paren)
 (paren-activate)
 
-(require 'yasnippet)
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/site/yas/snippets")
+;(require 'yasnippet)
+;(yas/initialize)
+;(yas/load-directory "~/.emacs.d/site/yas/snippets")
 
 
 ;; my requires
@@ -52,7 +52,6 @@
 (defun viper-maybe-checkout (buf) )
 
 (which-func-mode)
-(set-fringe-style 'minimal)
 
 (require 'tramp)
 (add-to-list 'tramp-remote-path "/home/jbalogh/bin")
@@ -71,7 +70,6 @@
  '(fill-column 80)
  '(font-lock-maximum-decoration t)
  '(frame-title-format (quote (buffer-file-name "emacs: %f" ("%b"))) t)
- '(fringe-style (quote minimal))
  '(global-font-lock-mode t)
  '(grep-command "ack --nocolor --nogroup ")
  '(grep-use-null-device nil)
@@ -117,3 +115,4 @@
 (add-hook 'before-save-hook 'maybe-delete-trailing-whitespace)
 
 (color-theme-pastels-on-dark)
+(set-fringe-style 'minimal)

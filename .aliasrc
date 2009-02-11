@@ -11,7 +11,7 @@ check=check.py
 django='python manage.py'
 
 # ls
-ls="ls --color=auto -I '*.pyc'"
+ls='ls -G'
 l='ls -lh'
 l='ls -lh'
 ll='ls -lh'

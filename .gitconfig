@@ -6,7 +6,7 @@
 	status = auto
 	branch = auto
 [core]
-    excludesfile = /home/jeff/.gitignore
+    excludesfile = /Users/jeff/.gitignore
 [alias]
     ci = commit
     co = checkout

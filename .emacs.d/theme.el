@@ -26,7 +26,7 @@
        (font-lock-type-face ((t (:bold t :foreground "#00ff99" :weight bold))))
        (font-lock-variable-name-face ((t (:foreground "turquoise"))))
 
-       (fringe ((t (:background "grey3"))))
+       (fringe ((t (:background "grey10"))))
 
        (mumamo-background-chunk-submode ((((class color) (min-colors 88) (background dark)) (:background "gray3"))))
 
