@@ -97,6 +97,7 @@
  '(show-trailing-whitespace nil)
  '(tab-width 4)
  '(tool-bar-mode nil)
+ '(tramp-default-method "ssh")
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(version-control nil)
  '(x-select-enable-clipboard t))
