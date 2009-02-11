@@ -75,5 +75,7 @@ b=v
 ucf='ssh je591549@olympus.acs.ucf.edu'
 monroe='ssh jbalogh@monroe.cs.ucf.edu'
 bp='ssh jeff@basieproject.org'
+khan='ssh jbalogh@khan.mozilla.org'
+amo=khan
 
 # vim: ft=sh

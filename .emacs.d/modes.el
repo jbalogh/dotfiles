@@ -142,6 +142,7 @@
                 ("\\.py$"     . python-mode)
                 ("\\.djhtml$" . django-html-mode)
                 ("\\.doctest$". doctest-mode)
+                ("\\.thtml$"  . php-mode)
                 )
               auto-mode-alist))
 
