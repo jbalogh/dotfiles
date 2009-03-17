@@ -1,31 +1,51 @@
 #!/usr/bin/env ruby
 
 ## git-wtf: display the state of your repository in a readable and easy-to-scan
-## format.
+## format. git-wtf tries to ease the task of dealing with many git branches.
+## It's also useful for getting a summary of how tracking branches relate to a
+## remote server.
 ##
-## git-wtf tries to ease the task of having many git branches. It's also useful
-## for getting a summary of how tracking branches relate to a remote server.
+## git-wtf is mainly useful in the case where you have one local repo and one
+## remote repo, and you're interested in the relationship between the two.
+## It's less useful for tracking multiple remote repos, though it's getting
+## better at it.
 ##
 ## git-wtf shows you:
 ## - How your branch relates to the remote repo, if it's a tracking branch.
-## - How your branch relates to non-feature ("version") branches, if it's a
-##   feature branch.
+## - How your branch relates to non-feature (what I've been calling "version")
+##   branches, if it's a feature branch.
 ## - How your branch relates to the feature branches, if it's a version branch.
 ##
 ## For each of these relationships, git-wtf displays the commits pending on
 ## either side, if any. It displays checkboxes along the side for easy scanning
 ## of merged/non-merged branches.
 ##
-## If you're working against a remote repo, git-wtf is best used between a 'git
-## fetch' and a 'git merge' (or 'git pull' if you don't mind the redundant
-## network access).
+## OUTPUT KEY
 ##
-## Usage: git wtf [branch+] [-l|--long] [-a|--all] [--dump-config]
+## [] means the branch has a corresponding remote version
+## () means it doesn't, i.e. it only exists in the local repo
+##
+## x means the merge occurs both locally and remotely
+## ~ means the merge occurs only locally
+##   (space) means the branch isn't merged in
+##
+## It's possible for merges to occur remotely and not locally, of course,
+## but that's a less common case and git-wtf currently doesn't display anything
+## special for it.
+##
+## USAGE
+##
+## git wtf [branch+] [-l|--long] [-a|--all] [-A|--all-commits] [-s|--short]
+##
+## git-wtf is best used after a 'git fetch' and before a 'git push' or a 'git
+## merge'.
 ##
 ## If [branch] is not specified, git-wtf will use the current branch.  With
-## --long, you'll see author info and date for each commit. With --all, you'll
-## see all commits, not just the first 5. With --dump-config, git-wtf will
-## print out its current configuration in YAML format and exit.
+## --long, you'll see author info and date for each commit. With --all-commits,
+## you'll see all commits, not just the first 5; with --short, you'll see none.
+## With --dump-config, git-wtf will print out its current configuration in YAML
+## format and exit. With --all, you'll see all feature branches across all
+## remote repos, not just local feature branches.
 ##
 ## git-wtf uses some heuristics to determine which branches are version
 ## branches, and which are feature branches. (Specifically, it assumes the
@@ -35,8 +55,8 @@
 ## git-wtf looks for a .git-wtfrc file starting in the current directory, and
 ## recursively up to the root. The config file is a YAML file that specifies
 ## the version branches, any branches to ignore, and the max number of commits
-## to display when --all isn't used. To start building a configuration file,
-## run "git-wtf --dump-config > .git-wtfrc" and edit it.
+## to display when --all-commits isn't used. To start building a configuration
+## file, run "git-wtf --dump-config > .git-wtfrc" and edit it.
 ##
 ## IMPORTANT NOTE: all local branches referenced in .git-wtfrc must be prefixed
 ## with heads/, e.g. "heads/master". Remote branches must be of the form
@@ -55,14 +75,15 @@
 ##
 ## You can find the GNU General Public License at: http://www.gnu.org/licenses/
 
-
 require 'yaml'
 CONFIG_FN = ".git-wtfrc"
 
 class Numeric; def pluralize s; "#{to_s} #{s}" + (self != 1 ? "s" : "") end end
 
 $long = ARGV.delete("--long") || ARGV.delete("-l")
+$short = ARGV.delete("--short") || ARGV.delete("-s")
 $all = ARGV.delete("--all") || ARGV.delete("-a")
+$all_commits = ARGV.delete("--all-commits") || ARGV.delete("-A")
 $dump_config = ARGV.delete("--dump-config")
 
 ## find config file
@@ -98,7 +119,7 @@ def show_commits commits, prefix="    "
   if commits.empty?
     puts "#{prefix} none"
   else
-    max = $all ? commits.size : $config["max_commits"]
+    max = $all_commits ? commits.size : $config["max_commits"]
     max -= 1 if max == commits.size - 1 # never show "and 1 more"
     commits[0 ... max].each { |c| puts "#{prefix}#{c}" }
     puts "#{prefix}... and #{commits.size - max} more." if commits.size > max
@@ -111,6 +132,12 @@ def ahead_behind_string ahead, behind
    compact.join("; ")
 end
 
+def widget merged_in, local_only=false, local_only_merge=false
+  print(local_only ? "(" : "[")
+  print(merged_in ? (local_only_merge ? "~" : "x") : " ")
+  print(local_only ? ")" : "]")
+end
+
 def show b, all_branches
   puts "Local branch: #{b[:local_branch]}"
   both = false
@@ -121,21 +148,21 @@ def show b, all_branches
 
     both = !pushc.empty? && !pullc.empty?
     if pushc.empty?
-      puts "[x] in sync with remote"
+      puts "#{widget true} in sync with remote"
     else
       action = both ? "push after rebase / merge" : "push"
-      puts "[ ] NOT in sync with remote (needs #{action})"
-      show_commits pushc
+      puts "#{widget false} NOT in sync with remote (needs #{action})"
+      show_commits pushc unless $short
     end
 
     puts "\nRemote branch: #{b[:remote_branch]} (#{b[:remote_url]})"
 
     if pullc.empty?
-      puts "[x] in sync with local"
+      puts "#{widget true} in sync with local"
     else
       action = pushc.empty? ? "merge" : "rebase / merge"
-      puts "[ ] NOT in sync with local (needs #{action})"
-      show_commits pullc
+      puts "#{widget false} NOT in sync with local (needs #{action})"
+      show_commits pullc unless $short
 
       both = !pushc.empty? && !pullc.empty?
     end
@@ -145,28 +172,30 @@ def show b, all_branches
   if $config["versions"].include? b[:local_branch]
     puts "\nFeature branches:" unless fbs.empty?
     fbs.each do |name, br|
+      local_only = br[:remote_branch].nil?
       remote_ahead = b[:remote_branch] ? commits_between(b[:remote_branch], br[:local_branch]) : []
       local_ahead = commits_between b[:local_branch], br[:local_branch]
       if local_ahead.empty? && remote_ahead.empty?
-        puts "[x] #{br[:name]} is merged in"
+        puts "#{widget true, local_only} #{br[:name]} is merged in"
       elsif local_ahead.empty? && b[:remote_branch]
-        puts "(x) #{br[:name]} merged in (only locally)"
+        puts "#{widget true, local_only, true} #{br[:name]} merged in (only locally)"
       else
         behind = commits_between br[:local_branch], b[:local_branch]
-        puts "[ ] #{br[:name]} is NOT merged in (#{ahead_behind_string local_ahead, behind})"
-        show_commits local_ahead
+        puts "#{widget false, local_only} #{br[:name]} is NOT merged in (#{ahead_behind_string local_ahead, behind})"
+        show_commits local_ahead unless $short
       end
     end
   else
     puts "\nVersion branches:" unless vbs.empty? # unlikely
     vbs.each do |v, br|
+      local_only = br[:remote_branch].nil?
       ahead = commits_between v, b[:local_branch]
       if ahead.empty?
-        puts "[x] merged into #{v}"
+        puts "#{widget true, local_only} merged into #{v}"
       else
         #behind = commits_between b[:local_branch], v
-        puts "[ ] NOT merged into #{v} (#{ahead.size.pluralize 'commit'} ahead)"
-        show_commits ahead
+        puts "#{widget false, local_only} NOT merged into #{v} (#{ahead.size.pluralize 'commit'} ahead)"
+        show_commits ahead unless $short
       end
     end
   end
@@ -177,8 +206,13 @@ end
 branches = `git show-ref`.inject({}) do |hash, l|
   sha1, ref = l.chomp.split " refs/"
   next hash if $config["ignore"].member? ref
-  next hash unless ref =~ /^heads\/(.+)/
-  name = $1
+  name = if $all
+    ref =~ /^(?:heads|remotes)\/(.+)/ && $1
+  else
+    ref =~ /^heads\/(.+)/ && $1
+  end
+
+  next hash if name.nil? || name == "origin/HEAD"
   hash[name] = { :name => name, :local_branch => ref }
   hash
 end
@@ -194,11 +228,11 @@ end
   when /branch\.(.*?)\.remote (.+)/
     next if $2 == '.'
 
-    branches[$1] ||= {}
+    next unless branches[$1]
     branches[$1][:remote] = $2
     branches[$1][:remote_url] = remotes[$2]
   when /branch\.(.*?)\.merge ((refs\/)?heads\/)?(.+)/
-    branches[$1] ||= {}
+    next unless branches[$1]
     branches[$1][:remote_mergepoint] = $4
   end
 end
@@ -222,4 +256,3 @@ puts "NOTE: working directory contains modified files" if modified
 puts "NOTE: staging area contains staged but uncommitted files" if uncommitted
 
 # the end!
-
