@@ -23,6 +23,10 @@
 (require 'hide-backups)
 (require 'keys)
 (require 'theme)
+(require 'key-chord)
+
+;; key chords
+(key-chord-mode 1)
 
 
 ;; hooks
@@ -90,6 +94,7 @@
  '(quack-tabs-are-evil-p t)
  '(safe-local-variable-values (quote ((Package . LISP-UNIT))))
  '(save-place t nil (saveplace))
+ '(save-place-file "~/.emacs.d/.emacs-places")
  '(scroll-bar-mode nil)
  '(search-highlight t)
  '(sgml-basic-offset 2)

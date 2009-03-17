@@ -12,3 +12,5 @@
     co = checkout
 [merge]
 	tool = meld
+[github]
+	token = 8de0cba72dfb1837421604bdbbcefbab

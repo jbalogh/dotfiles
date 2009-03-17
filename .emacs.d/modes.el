@@ -44,9 +44,11 @@
 	  (lambda ()
         (local-set-key [(f6)] 'nose)
 	    (local-set-key [(f7)] 'pyflakes)
-	    (local-set-key [(f8)] 'python-insert-pdb)
+	    (local-set-key [(f9)] 'python-insert-pdb)
         (dolist (x '(insert-state emacs-state vi-state))
-          (viper-add-local-keys x '(([backspace] . py-electric-backspace))))))
+          (viper-add-local-keys x '(([backspace] . py-electric-backspace))))
+        (key-chord-define py-mode-map "b;" "Oimport pdb; pdb.set_trace()")
+        ))
 
 (autoload 'doctest-mode "doctest-mode" "Doctests." t)
 (add-hook 'doctest-mode-hook
@@ -58,6 +60,9 @@
   (save-buffer))
 (ad-activate 'doctest-execute)
 
+(add-hook 'django-html-mode-hook
+          (lambda ()
+           (key-chord-define django-html-mode-map "{{" "{{   }}\C-b\C-b\C-b\C-b")))
 ;;;
 ;;; Python
 ;;;
@@ -122,16 +127,28 @@
 (autoload 'django-html-mode "django-html-mode.el"
           "Major mode for editing django templates" t)
 
+(add-hook 'django-html-mode-hook
+          (lambda ()
+           (key-chord-define django-html-mode-map "{{" "{{   }}\C-b\C-b\C-b\C-b")))
+
 ;;;
 ;;; Django
 ;;;
 ;;; nxml, mumamo
+;;;
 
 (load "nxhtml/autostart.el")
 
 ;;;
 ;;; nxml
 ;;;
+;;; php
+;;;
+(add-hook 'php-mode-hook
+          (lambda ()
+            (key-chord-define php-mode-map "__" "___('devcp_')\C-b\C-b")
+            (key-chord-define php-mode-map "<<" "<?=___('devcp_')?>\C-b\C-b\C-b\C-b")
+            ))
 
 (autoload 'markdown-mode "markdown-mode.el"
           "Major mode for editing Markdown files" t)
@@ -140,7 +157,7 @@
       (append '(("\\.js$"     . js2-mode)
                 ("\\.json$"   . js2-mode)
                 ("\\.py$"     . python-mode)
-                ("\\.djhtml$" . django-html-mode)
+                ("\\.html$"   . django-html-mode)
                 ("\\.doctest$". doctest-mode)
                 ("\\.thtml$"  . php-mode)
                 )

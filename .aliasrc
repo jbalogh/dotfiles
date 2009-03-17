@@ -4,11 +4,10 @@ grep='grep --color=auto'
 rgrep='grep -r --color=auto'
 mk='mkdir -p'
 p=popd
-open=gnome-open
 o=open
 rrm='rm -rf'
 
-d=django
+check=check.py
 
 # ls
 ls="ls --color=auto -I '*.pyc'"
