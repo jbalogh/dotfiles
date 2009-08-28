@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Usage: vbox-open-port name guest-port host-port
+NAME=$1
+GUEST=$2
+HOST=$3
+
+VBoxManage setextradata arch "VBoxInternal/Devices/pcnet/0/LUN#0/Config/$NAME/GuestPort" $GUEST
+VBoxManage setextradata arch "VBoxInternal/Devices/pcnet/0/LUN#0/Config/$NAME/HostPort" $HOST
+VBoxManage setextradata arch "VBoxInternal/Devices/pcnet/0/LUN#0/Config/$NAME/Protocol" TCP

@@ -14,3 +14,7 @@
 	tool = meld
 [github]
 	token = 8de0cba72dfb1837421604bdbbcefbab
+[interactive]
+	singlekey = 1
+[push]
+	default = matching
