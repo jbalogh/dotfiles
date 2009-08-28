@@ -50,6 +50,7 @@ gl='git log'
 glp='git log -p'
 gv='git svn'
 gr='git rebase'
+gb='git branch'
 ungit="perl -pi -e 's:[ab]/(.*):\1:g'"
 
 # nose
