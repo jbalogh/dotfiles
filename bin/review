@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if [ -z $1 ]; then
+    echo "need a reviewer"
+    exit 1
+fi
+
+BUG=$(git bug)
+PATCH=~/p/${BUG}.patch
+
+git format-patch --binary -1 --stdout >| ${PATCH}
+
+MSG=$(git log -1 --format="%s" | perl -p -e 's/^bug \d+, //')
+REVIEWER=$1
+COMMENT=$2
+
+bzattach ${BUG} ${PATCH} --description="${MSG}" --reviewer=${REVIEWER} --patch --comment="${COMMENT}"
