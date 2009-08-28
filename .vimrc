@@ -60,3 +60,6 @@ map ,p "+gP
 
 """ Python
 map <F8> Oimport ipdb; ipdb.set_trace()<Esc>
+
+"" Remove trailing whitespace
+autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
