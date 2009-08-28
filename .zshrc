@@ -12,6 +12,9 @@ export DARCS_ALWAYS_COLOR=1
 export ACK_COLOR_MATCH=magenta
 export PYTHONPATH=~/.local/pypath
 
+export WORKON_HOME=$HOME/.virtualenvs
+source $HOME/.virtualenvwrapper
+
 # Add goodies to the PATH
 echo $PATH | grep -q $HOME/bin
 if [[ $? -eq 1 ]]; then
