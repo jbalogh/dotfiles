@@ -18,3 +18,4 @@ dist
 *.elc
 .emacs.d/history
 .emacs.d/site/nxhtml
+.virtualenvs
