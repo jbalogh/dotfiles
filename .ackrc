@@ -1,2 +1,4 @@
 --type-add=js=json
 --type-add=php=thtml
+--type-add=php=module
+--type-add=php=inc
