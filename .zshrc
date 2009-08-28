@@ -4,6 +4,7 @@ SAVEHIST=5000
 DIRSTACKSIZE=50
 cdpath=(. ~)
 
+fpath=( ${HOME}/.zsh/func $fpath )
 export EDITOR=vim
 export PAGER=most
 export DARCS_ALWAYS_COLOR=1

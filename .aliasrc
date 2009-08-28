@@ -78,3 +78,4 @@ khan='ssh jbalogh@khan.mozilla.org'
 amo=khan
 
 # vim: ft=sh
+archie='ssh root@localhost -p2222'
