@@ -1,15 +1,22 @@
-(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/site"))
+(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/site")
+(add-to-list 'load-path "~/.emacs.d/site/textmate.el")
+(require 'textmate)
+(textmate-mode)
+
+(show-paren-mode 1)
 
 ;; stdlib requires
 (require 'ido)
 (require 'uniquify)
+(require 'saveplace)
 
 
 ;; site requires
 (require 'vim)
 (require 'blank-mode)
 ;(load "nxml/autostart.el")
+(require 'php-mode)
 (require 'mic-paren)
 (paren-activate)
 
@@ -22,7 +29,7 @@
 (require 'modes)
 (require 'hide-backups)
 (require 'keys)
-(require 'theme)
+(load-library "pastels-on-dark-theme")
 (require 'key-chord)
 
 ;; key chords
@@ -32,7 +39,6 @@
 ;; hooks
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
 
 ;; misc
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -48,12 +54,8 @@
 (which-func-mode)
 (set-fringe-style 'minimal)
 
-(require 'vc-git)
-(when (featurep 'vc-git) (add-to-list 'vc-handled-backends 'git))
-(require 'git)
-(autoload 'git-blame-mode "git-blame"
-          "Minor mode for incremental blame for Git." t)
-
+(require 'tramp)
+(add-to-list 'tramp-remote-path "/home/jbalogh/bin")
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -76,13 +78,12 @@
  '(ido-mode t nil (ido))
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
- '(js2-cleanup-whitespace t)
+ '(js2-cleanup-whitespace nil)
  '(js2-highlight-level 3)
  '(js2-indent-on-enter-key t)
  '(js2-mode-squeeze-spaces nil)
  '(menu-bar-mode nil)
  '(mumamo-chunk-coloring (quote submode-colored))
- '(nxhtml-skip-welcome t)
  '(quack-default-program "mzscheme -M errortrace")
  '(quack-fontify-style (quote emacs))
  '(quack-global-menu-p nil)
@@ -92,7 +93,7 @@
  '(quack-run-scheme-prompt-defaults-to-last-p t)
  '(quack-smart-open-paren-p t)
  '(quack-tabs-are-evil-p t)
- '(safe-local-variable-values (quote ((Package . LISP-UNIT))))
+ '(safe-local-variable-values (quote ((delete-whitespace . t) (Package . LISP-UNIT))))
  '(save-place t nil (saveplace))
  '(save-place-file "~/.emacs.d/.emacs-places")
  '(scroll-bar-mode nil)
@@ -106,23 +107,13 @@
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(version-control nil)
  '(x-select-enable-clipboard t))
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(diff-added ((t (:foreground "turquoise"))))
- '(diff-file-header ((((class color) (min-colors 88) (background dark)) (:foreground "dark cyan" :weight bold))))
- '(diff-header ((((class color) (min-colors 88) (background dark)) (:foreground "green"))))
- '(diff-refine-change ((((class color) (min-colors 88) (background dark)) (:background "dark slate gray"))))
- '(diff-removed ((t (:foreground "red"))))
- '(font-lock-comment-delimiter-face ((default (:inherit font-lock-comment-face))))
- '(font-lock-comment-face ((((type nil) (class color) (min-colors 8) (background light)) (:foreground "cyan"))))
- '(mumamo-background-chunk-submode ((((class color) (min-colors 88) (background dark)) (:background "gray5")))))
 
-(setq server-name (cond
-                   ((window-system) "emacs-windowed")
-                   ((daemonp) "emacs-daemon")
-                   (t "emacs-nw")))
-(my-charcoal-black)
-(server-start)
+(set-fringe-style 'minimal)
+
+(setq delete-whitespace nil)
+(defun maybe-delete-trailing-whitespace ()
+  (if delete-whitespace
+      (delete-trailing-whitespace)))
+(add-hook 'before-save-hook 'maybe-delete-trailing-whitespace)
+
+(color-theme-pastels-on-dark)
