@@ -60,9 +60,6 @@
   (save-buffer))
 (ad-activate 'doctest-execute)
 
-(add-hook 'django-html-mode-hook
-          (lambda ()
-           (key-chord-define django-html-mode-map "{{" "{{   }}\C-b\C-b\C-b\C-b")))
 ;;;
 ;;; Python
 ;;;
@@ -97,7 +94,7 @@
 ;;; Haskell
 ;;;
 
-(load "~/.emacs.d/site/haskell-mode/haskell-site-file")
+;(load "~/.emacs.d/site/haskell-mode/haskell-site-file")
 
 ;;;
 ;;; Haskell
@@ -129,7 +126,7 @@
 
 (add-hook 'django-html-mode-hook
           (lambda ()
-           (key-chord-define django-html-mode-map "{{" "{{   }}\C-b\C-b\C-b\C-b")))
+           (key-chord-define django-html-mode-map "{{" "{{  }}\C-xy3\C-b")))
 
 ;;;
 ;;; Django
@@ -146,8 +143,11 @@
 ;;;
 (add-hook 'php-mode-hook
           (lambda ()
-            (key-chord-define php-mode-map "__" "___('devcp_')\C-b\C-b")
-            (key-chord-define php-mode-map "<<" "<?=___('devcp_')?>\C-b\C-b\C-b\C-b")
+            (dolist (x '(("__" "___('devcp_')\C-b\C-b")
+                         ("<<" "<?=___('devcp_')?>\C-xy4\C-b")
+                         ("b;" "Oecho '<pre>';print_r();echo '</pre><hr>';\C-xy20\C-b")
+                         ))
+              (key-chord-define php-mode-map (car x) (cadr x)))
             ))
 
 (autoload 'markdown-mode "markdown-mode.el"
@@ -159,7 +159,8 @@
                 ("\\.py$"     . python-mode)
                 ("\\.html$"   . django-html-mode)
                 ("\\.doctest$". doctest-mode)
-                ("\\.thtml$"  . php-mode)
+                ;("\\.php$"    . php-mode)
+                ;("\\.thtml$"  . html-mode)
                 )
               auto-mode-alist))
 

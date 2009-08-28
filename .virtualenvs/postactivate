@@ -1,0 +1,1 @@
+site_packages=$(virtualenvwrapper_get_site_packages_dir)

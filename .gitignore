@@ -8,3 +8,14 @@ TAGS
 build
 dist
 *~
+.buildout/downloads
+.buildout/eggs
+.emacs.d/.autosaves
+.emacs.d/.emacs-places
+.emacs.d/tramp
+.zsh/cache
+.ipython/IPython_crash_report.txt
+*.elc
+.emacs.d/history
+.emacs.d/site/nxhtml
+.virtualenvs

@@ -6,4 +6,5 @@ if exists("did_load_filetypes")
 endif
 augroup filetypedetect
     au! BufRead,BufNewFile *.thtml setfiletype php
+    au! BufRead,BufNewFile *.md setfiletype mkd
 augroup END
