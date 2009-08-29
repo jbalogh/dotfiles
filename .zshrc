@@ -7,10 +7,7 @@ cdpath=(. ~)
 fpath=( ${HOME}/.zsh/func $fpath )
 export EDITOR=vim
 export PAGER=most
-export DARCS_ALWAYS_COLOR=1
-#export MANPATH=$MANPATH:/usr/share/man
 export ACK_COLOR_MATCH=magenta
-export PYTHONPATH=~/.local/pypath
 
 export WORKON_HOME=$HOME/.virtualenvs
 source $HOME/.virtualenvwrapper
@@ -18,7 +15,9 @@ source $HOME/.virtualenvwrapper
 # Add goodies to the PATH
 echo $PATH | grep -q $HOME/bin
 if [[ $? -eq 1 ]]; then
-    export PATH=${HOME}/bin:${HOME}/.local/bin:$PATH
+    for f in dev/git-svn-clone-externals bin/git-tools .local/bin bin
+        EXTRA=${HOME}/$f:$EXTRA
+    export PATH=$EXTRA:$PATH
 fi
 
 # Load aliases
@@ -56,8 +55,10 @@ esac
 RPS1=$'%{\e[34m%}%~%{\e[0m%}%{\e[35m%}%2v%{\e[0m%}'
 PS1=$'%{\e[36m%}%v %{\e[0m%}'
 case $HOST in
-    (archie|jeff-baloghs-macbook.local)
+    (archie|venona)
         psvar='$';;
+    (khan.mozilla.org)
+        psvar='(khan) $';;
     (*)
         psvar="($HOST) %%";;
 esac
@@ -123,7 +124,7 @@ setopt                  \
     pushd_minus         \
 
 # Load keychain for ssh-agent
-[[ $USER == jeff ]] && [[ $HOST == archie ]] && /usr/bin/keychain -q ${HOME}/.ssh/id_rsa
+[[ -x /usr/bin/keychain ]] && /usr/bin/keychain -q ${HOME}/.ssh/id_rsa
 [[ -f $HOME/.keychain/$HOST-sh ]] && source $HOME/.keychain/$HOST-sh
 
 # Keybindings
@@ -135,40 +136,12 @@ bindkey '\Cn'  history-beginning-search-forward
 bindkey '\Cl'  forward-word
 bindkey '\Ch'  backward-word
 
-# cdable vars
-py=/usr/lib/python2.6/site-packages
-drp=~/src/dp
-dp=~drp/drproject
-dpenv=~drp/hacking/drp_root
-alias dp='cd ~dp'
-basie=~/src/basie
-dj=~basie/parts/django/django
-alias dj='cd ~dj'
-basie(){
-    cd ~basie
-    source bin/activate
-    # yay colors
-    PS1=$(echo $PS1 | sed 's/^\(([^)]*)\)/%{[32m%}\1%{[0m%}/')
-}
-
-
 # Global aliases
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g M='| most'
 alias -g V='| view -'
 alias -g A='| ack'
-
-# Functions
-switchxorg(){
-    if [[ /etc/X11/xorg.conf -ef /etc/X11/xorg.conf.acer ]]; then
-        sudo ln -s -f /etc/X11/xorg.conf.single /etc/X11/xorg.conf
-        echo "switching to single"
-    else
-        sudo ln -s -f /etc/X11/xorg.conf.acer /etc/X11/xorg.conf
-        echo "switching to acer"
-    fi
-}
 
 em () {
     ~/bin/em $@ &!
