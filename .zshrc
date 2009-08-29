@@ -18,7 +18,7 @@ source $HOME/.virtualenvwrapper
 # Add goodies to the PATH
 echo $PATH | grep -q $HOME/bin
 if [[ $? -eq 1 ]]; then
-    export PATH=${HOME}/bin:${HOME}/.local/bin:$PATH
+    export PATH=${HOME}/bin:${HOME}/bin/git-tools:${HOME}/.local/bin:${HOME}/dev/git-svn-clone-externals:$PATH
 fi
 
 # Load aliases
