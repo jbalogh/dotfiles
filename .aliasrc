@@ -17,19 +17,6 @@ ll='ls -lh'
 la='ls -A'
 lla='la -lhA'
 
-# Misc
-backup="rsync -av --delete -h --progress ~/ /mnt/backup/home"
-sp='sc sup'
-rss='sc newsbeuter'
-irc='sc irssi'
-
-# DrProject
-dp-admin='drproject-admin ~dpenv'
-dps='drproject-server -w standalone --debug --auto-reload ~dpenv'
-
-# Darcs
-dw='darcs whatsnew'
-dr='darcs record'
 
 # Arch
 pac=pacman
@@ -43,15 +30,12 @@ x=startx
 g=git
 gd='git diff'
 gs='git status'
-gco='git checkout'
-gic='git commit'
-gci=gic
+gci='git commit'
 gl='git log'
 glp='git log -p'
 gv='git svn'
 gr='git rebase'
 gb='git branch'
-ungit="perl -pi -e 's:[ab]/(.*):\1:g'"
 
 # nose
 nose=nosetests
@@ -62,9 +46,6 @@ nh='nose -h M'
 py=python
 ip=ipython
 ipo=ipython
-
-# emacs
-en='emacsclient -t -s emacs-nw -a emacs-nw'
 
 # vim
 v=vim
@@ -77,6 +58,6 @@ monroe='ssh jbalogh@monroe.cs.ucf.edu'
 bp='ssh jeff@basieproject.org'
 khan='ssh jbalogh@khan.mozilla.org'
 amo=khan
+archie='ssh jbalogh@localhost -p2222'
 
-# vim: ft=sh
-archie='ssh root@localhost -p2222'
+# vim: set ft=sh
