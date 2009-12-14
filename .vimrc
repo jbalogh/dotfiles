@@ -27,6 +27,12 @@ set tags=tags;/                " Where to find tags
 set title                      " set terminal title to filename
 set tw=80                      " Text width
 
+filetype indent on
+
+"" FuzzyFinder Textmate
+map <leader>t :FuzzyFinderTextMate<CR>
+let g:fuzzy_ignore="*.pyc,*.png,*.jpg,*.gif,*.ico,*.svg"
+
 "" Better command completion
 set wildmenu
 set wildmode=list:longest,full
@@ -40,6 +46,10 @@ colorscheme asu1dark
 runtime macros/matchit.vim
 
 """ Keys
+
+"" Damn you F1
+map <F1> <Esc>
+imap <F1> <Esc>
 
 "" Yank to end of line
 map Y y$
@@ -59,10 +69,17 @@ map ,c "+y
 map ,p "+gP
 
 """ Python
-map <F8> Oimport ipdb; ipdb.set_trace()<Esc>
+map <F8> Oimport pdb; pdb.set_trace()<Esc>
 
 "" Remove trailing whitespace
-autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+autocmd BufWritePre * :%s/\s\+$//e
 
 """ PHP
 autocmd FileType php set tw=0
+
+autocmd FileType html set ft=htmldjango
+autocmd FileType html set sw=2
+autocmd FileType htmldjango setlocal sw=2
+
+""" Sphinx
+let @h = "yypVr"

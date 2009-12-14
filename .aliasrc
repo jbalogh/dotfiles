@@ -8,6 +8,7 @@ o=open
 rrm='rm -rf'
 
 check=check.py
+django='python manage.py'
 
 # ls
 ls="ls --color=auto -I '*.pyc'"

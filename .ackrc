@@ -2,3 +2,4 @@
 --type-add=php=thtml
 --type-add=php=module
 --type-add=php=inc
+--type-set=rst=rst

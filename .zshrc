@@ -15,7 +15,7 @@ source $HOME/.virtualenvwrapper
 # Add goodies to the PATH
 echo $PATH | grep -q $HOME/bin
 if [[ $? -eq 1 ]]; then
-    for f in dev/git-svn-clone-externals bin/git-tools .local/bin bin
+    for f in dev/git-svn-clone-externals bin/git-tools bin .gem/ruby/1.8/bin
         EXTRA=${HOME}/$f:$EXTRA
     export PATH=$EXTRA:$PATH
 fi

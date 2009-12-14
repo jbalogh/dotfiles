@@ -4,4 +4,3 @@ BIN=$1/bin
 
 $BIN/easy_install -Z pip
 $BIN/pip install -i 'http://people.mozilla.org/~jbalogh/pypi' ipython
-$BIN/pip install ipdb 
