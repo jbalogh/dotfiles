@@ -1,0 +1,29 @@
+#!/bin/sh
+# Usage: `git url` or `git url <commitish>`
+#
+# * copies the commit's github url to your clipboard
+# * prints out the log message
+# * opens the bugzilla page if it found a bug number
+#
+# Set up the github url with `git config github.url <url>`.
+# Only for the Mac.
+
+if [[ $1 ]]; then
+    REV=$1
+else
+    REV='HEAD'
+fi
+
+ROOT=$(git config github.url)
+BUGZILLA='https://bugzilla.mozilla.org/show_bug.cgi?id='
+HASH=$(git rev-parse --short $REV)
+MSG=$(git log --pretty=oneline --format=%s -1 $HASH)
+BUG=$(echo $MSG | ack -i 'bug (\d+)' --output='$1')
+
+echo $ROOT/$HASH | pbcopy
+echo $MSG
+
+# Open the browser if we found a bug number.
+if [[ $BUG ]]; then
+    open $BUGZILLA$BUG
+fi

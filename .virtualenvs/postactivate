@@ -1,6 +1,10 @@
 autoload colors; colors
 
 site_packages=$(virtualenvwrapper_get_site_packages_dir)
+SRC=$VIRTUAL_ENV/src
+dj=$SRC/django/django
+caching=$SRC/django-cache-machine/caching
+jingo=$SRC/jingo/jingo
 
 PS1="%{$fg[green]%}($(basename $VIRTUAL_ENV))%{$fg[white]%}$_OLD_VIRTUAL_PS1"
 

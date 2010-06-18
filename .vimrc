@@ -25,19 +25,19 @@ set t_Co=256                   " 256 colors
 set tabstop=4
 set tags=tags;/                " Where to find tags
 set title                      " set terminal title to filename
-set tw=80                      " Text width
-
-filetype indent on
+set tw=79                      " Text width
+set hlsearch                   " Highlight search
+set modeline                   " Pay attention to the modeline
 
 "" FuzzyFinder Textmate
-map <leader>t :FuzzyFinderTextMate<CR>
-let g:fuzzy_ignore="*.pyc,*.png,*.jpg,*.gif,*.ico,*.svg"
+"" map <leader>t :FuzzyFinderTextMate<CR>
+"" let g:fuzzy_ignore="*.pyc,*.png,*.jpg,*.gif,*.ico,*.svg"
 
 "" Better command completion
 set wildmenu
 set wildmode=list:longest,full
 "" Ignore these files when completing names and in Explorer
-set wildignore=.svn,CVS,.git,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif
+set wildignore=.svn,CVS,.git,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc
 
 syntax enable
 colorscheme asu1dark
@@ -77,9 +77,15 @@ autocmd BufWritePre * :%s/\s\+$//e
 """ PHP
 autocmd FileType php set tw=0
 
-autocmd FileType html set ft=htmldjango
+autocmd FileType html set ft=htmljinja
 autocmd FileType html set sw=2
+autocmd FileType htmljinja setlocal sw=2
 autocmd FileType htmldjango setlocal sw=2
 
 """ Sphinx
 let @h = "yypVr"
+
+filetype plugin indent on
+
+""" Jump to the last known position in a file after opening.
+:au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif

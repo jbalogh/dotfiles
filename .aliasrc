@@ -9,6 +9,9 @@ rrm='rm -rf'
 
 check=check.py
 django='python manage.py'
+t='git t'
+z='workon zamboni'
+rmpyc='rm **/*.pyc'
 
 # ls
 ls='ls -G'
@@ -30,6 +33,7 @@ x=startx
 # git
 g=git
 gd='git diff'
+gdc='git diff --cached'
 gs='git status'
 gci='git commit'
 gl='git log'
@@ -37,6 +41,7 @@ glp='git log -p'
 gv='git svn'
 gr='git rebase'
 gb='git branch'
+gp='git p'
 
 # nose
 nose=nosetests
@@ -49,6 +54,7 @@ ip=ipython
 ipo=ipython
 
 # vim
+vim=/usr/local/bin/vim
 v=vim
 c=v
 b=v
@@ -61,4 +67,4 @@ khan='ssh jbalogh@khan.mozilla.org'
 amo=khan
 archie='ssh jbalogh@localhost -p2222'
 
-# vim: set ft=sh
+# vim: set ft=sh:

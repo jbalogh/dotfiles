@@ -10,6 +10,13 @@
 [alias]
     ci = commit
     co = checkout
+    h = help
+    ch = cherry-pick
+    p = "!git push $* && git url"
+    edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
+    add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+    t = "!python manage.py test --noinput -s"
+    prune = !git remote | xargs -n 1 git remote prune
 [merge]
 	tool = meld
 [github]

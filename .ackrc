@@ -3,3 +3,4 @@
 --type-add=php=module
 --type-add=php=inc
 --type-set=rst=rst
+--ignore-dir=vendor

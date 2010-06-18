@@ -1,4 +1,6 @@
 #!/bin/zsh
+echo $*
+exit
 screen -list | grep -q $1
 if [[ $? == 0 ]]; then
     screen -d -r $1;

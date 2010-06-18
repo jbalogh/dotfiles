@@ -2,7 +2,6 @@ HISTFILE=~/.histfile
 HISTSIZE=5000
 SAVEHIST=5000
 DIRSTACKSIZE=50
-cdpath=(. ~)
 
 fpath=( ${HOME}/.zsh/func $fpath )
 export EDITOR=vim
@@ -12,10 +11,12 @@ export ACK_COLOR_MATCH=magenta
 export WORKON_HOME=$HOME/.virtualenvs
 source $HOME/.virtualenvwrapper
 
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
 # Add goodies to the PATH
 echo $PATH | grep -q $HOME/bin
 if [[ $? -eq 1 ]]; then
-    for f in dev/git-svn-clone-externals bin/git-tools bin .gem/ruby/1.8/bin
+    for f in bin .gem/ruby/1.8/bin
         EXTRA=${HOME}/$f:$EXTRA
     export PATH=$EXTRA:$PATH
 fi
@@ -164,3 +165,15 @@ gig () {
 	for f in $*
 		echo $f >> ~/.gitignore
 }
+
+# A list of non-alphanumeric characters considered part of a word.
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
+export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
+
+# -- start rip config -- #
+RIPDIR=/Users/jeff/.rip
+RUBYLIB="$RUBYLIB:$RIPDIR/active/lib"
+PATH="$PATH:$RIPDIR/active/bin"
+export RIPDIR RUBYLIB PATH
+# -- end rip config -- #
