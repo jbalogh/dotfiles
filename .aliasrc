@@ -10,8 +10,10 @@ rrm='rm -rf'
 check=check.py
 django='python manage.py'
 t='git t'
+ds='git django-shell'
 z='workon zamboni'
-rmpyc='rm **/*.pyc'
+rmpyc='sudo rm **/*.pyc'
+refmem='launchctl unload ~/Library/LaunchAgents/memcached.plist && launchctl load ~/Library/LaunchAgents/memcached.plist'
 
 # ls
 ls='ls -G'
@@ -34,7 +36,7 @@ x=startx
 g=git
 gd='git diff'
 gdc='git diff --cached'
-gs='git status'
+gs='git status -sb'
 gci='git commit'
 gl='git log'
 glp='git log -p'
@@ -42,6 +44,7 @@ gv='git svn'
 gr='git rebase'
 gb='git branch'
 gp='git p'
+co='git checkout'
 
 # nose
 nose=nosetests

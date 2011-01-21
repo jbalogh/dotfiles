@@ -17,5 +17,5 @@ import hotshot.stats
 import sys
 
 stats = hotshot.stats.load(sys.argv[1])
-stats.sort_stats('time', 'calls')
+stats.sort_stats('time', 'cumulative', 'calls')
 stats.print_stats(20)

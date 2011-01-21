@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# logfile an -v-20d
+# => /var/log/clusterlogs/http_app_addons_next/`today - 20 days`
+#
+# a = app, p = preview, n = next, $2 is passed to `date`
+
+P=/var/log/clusterlogs/http
+
+if [[ $1 =~ .*a.* ]]; then
+    P=${P}_app
+fi
+
+P=${P}_addons
+
+if [[ $1 =~ .*p.* ]]; then
+    P=${P}_preview
+fi
+if [[ $1 =~ .*n.* ]]; then
+    P=${P}_next
+fi
+
+echo $P/$(date $2 +%Y)/$(date $2 +%m)/$(date $2 +%Y-%m-%d)

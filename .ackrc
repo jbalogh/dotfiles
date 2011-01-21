@@ -4,3 +4,5 @@
 --type-add=php=inc
 --type-set=rst=rst
 --ignore-dir=vendor
+--ignore-dir=locale
+--type-set=rust=rs

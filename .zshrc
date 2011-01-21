@@ -13,6 +13,8 @@ source $HOME/.virtualenvwrapper
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
+export VIM_APP_DIR=/usr/local/Cellar/macvim/HEAD
+
 # Add goodies to the PATH
 echo $PATH | grep -q $HOME/bin
 if [[ $? -eq 1 ]]; then
@@ -177,3 +179,5 @@ RUBYLIB="$RUBYLIB:$RIPDIR/active/lib"
 PATH="$PATH:$RIPDIR/active/bin"
 export RIPDIR RUBYLIB PATH
 # -- end rip config -- #
+#
+workon zamboni

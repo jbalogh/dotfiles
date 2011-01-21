@@ -1,6 +1,6 @@
 [user]
 	name = Jeff Balogh
-	email = me@jeffbalogh.org
+	email = jbalogh@mozilla.com
 [color]
 	diff = auto
 	status = auto
@@ -15,8 +15,11 @@
     p = "!git push $* && git url"
     edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
     add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
-    t = "!python manage.py test --noinput -s"
+    t = "!python manage.py test --noinput -s --logging-clear-handlers "
+    django-shell = "!python manage.py shell"
     prune = !git remote | xargs -n 1 git remote prune
+    get = "!f() { echo Pulling in $1 && git checkout master && git pull && git checkout $1 && git rebase master && git checkout master && git merge $1; }; f"
+    check = "!f() { git whatchanged $1 -1 | awk '/^:/ {print $NF}' | xargs check.py; }; f"
 [merge]
 	tool = meld
 [github]

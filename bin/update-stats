@@ -1,0 +1,21 @@
+#!/bin/sh
+
+DATE=$(echo "SELECT MAX(date) FROM download_counts" | mysql zamboni --silent)
+echo "Getting stats after $DATE..."
+FIELD='`date`'  # Yay sql + shell quoting.
+mysqldump -h cm-webdev01-master01 -u jbalogh \
+    --skip-opt --extended-insert --no-create-info \
+    remora download_counts update_counts --where="$FIELD > '$DATE'" > stats.sql
+
+echo "Inserting..."
+mysql zamboni < stats.sql
+
+echo "Deleting stats older than 90 days..."
+days=$(date -v-90d +%Y-%m-%d)
+for table in update_counts download_counts
+do
+    echo "DELETE FROM $table where $FIELD < '$days'" | mysql zamboni
+done
+
+rm stats.sql
+echo "Great job everyone!"

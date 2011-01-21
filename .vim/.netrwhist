@@ -1,9 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/jeff/dev/tower/tower/management/commands'
-let g:netrw_dirhist_2='/Users/jeff/dev/zamboni/vendor/packages/django-pylibmc'
-let g:netrw_dirhist_3='/Users/jeff/dev/zamboni/apps/reviews/tests'
-let g:netrw_dirhist_4='/Users/jeff/Dropbox'
-let g:netrw_dirhist_5='/Users/jeff/dev/zamboni/apps/reviews/tests'
-let g:netrw_dirhist_6='/Users/jeff/dev/zamboni/vendor/packages/celery/celery/execute'
-let g:netrw_dirhist_7='/Users/jeff/dev/zamboni/vendor/src/django/django/core/management/commands'
+let g:netrw_dirhist_cnt =0

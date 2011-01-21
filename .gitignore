@@ -1,7 +1,7 @@
 *.pyc
 tags
 TAGS
-*.swp
+*.sw[a-z]
 *.egg-info
 .emacs.desktop
 .#*
@@ -18,3 +18,5 @@ dist
 .emacs.d/site/nxhtml
 .virtualenvs
 .ipython
+*.o
+.vim/undo
